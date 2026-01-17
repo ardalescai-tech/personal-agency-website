@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact - Studio Web MVP</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <div><strong>Studio Web MVP</strong></div>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/services">Servicii</a>
+          <a href="/quote">Cere oferta</a>
+          <a href="/contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Contact</h1>
+    <p>Ai o intrebare rapida? Scrie-mi si revin cu raspuns.</p>
+
+    <div data-notice="contact" aria-live="polite"></div>
+
+    <form data-form="contact">
+      <div>
+        <label for="name">Nume complet *</label>
+        <input id="name" name="name" type="text" required />
+      </div>
+      <div>
+        <label for="email">Email *</label>
+        <input id="email" name="email" type="email" required />
+      </div>
+      <div>
+        <label for="message">Mesaj *</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+      <button type="submit">Trimite mesaj</button>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Studio Web MVP. Toate drepturile rezervate.</p>
+      <div class="nav-links">
+        <a href="/politica-de-confidentialitate">Politica de confidentialitate</a>
+        <a href="/termeni-si-conditii">Termeni si conditii</a>
+        <a href="/politica-cookies">Politica cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/forms.js"></script>
+</body>
+</html>
+
