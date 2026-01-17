@@ -34,83 +34,103 @@
 
     <form data-form="quote">
       <div class="form-section" data-reveal>
-        <h3>Detalii companie</h3>
-        <div>
-          <label for="name">Nume complet *</label>
-          <input id="name" name="name" type="text" required />
+        <div class="section-head">
+          <h3>Detalii companie</h3>
+          <p>Datele de baza pentru a putea reveni rapid cu oferta.</p>
         </div>
-        <div>
-          <label for="email">Email *</label>
-          <input id="email" name="email" type="email" required />
-        </div>
-        <div>
-          <label for="business_type">Tip business *</label>
-          <input id="business_type" name="business_type" type="text" placeholder="Agentie, SaaS, consultanta" required />
-        </div>
-      </div>
-
-      <div class="form-section" data-reveal>
-        <h3>Structura website</h3>
-        <div>
-          <label for="website_type">Tip website *</label>
-          <select id="website_type" name="website_type" required>
-            <option value="">Alege o optiune</option>
-            <option value="Landing">Landing</option>
-            <option value="Website prezentare">Website prezentare</option>
-            <option value="Website business">Website business</option>
-            <option value="MVP web app">MVP web app</option>
-          </select>
-        </div>
-        <div>
-          <label>Pagini necesare *</label>
-          <div class="grid">
-            <label><input type="checkbox" name="pages" value="Home" /> Home</label>
-            <label><input type="checkbox" name="pages" value="About" /> About</label>
-            <label><input type="checkbox" name="pages" value="Servicii" /> Servicii</label>
-            <label><input type="checkbox" name="pages" value="Portofoliu" /> Portofoliu</label>
-            <label><input type="checkbox" name="pages" value="Blog" /> Blog</label>
-            <label><input type="checkbox" name="pages" value="Contact" /> Contact</label>
+        <div class="form-grid">
+          <div>
+            <label for="name">Nume complet *</label>
+            <input id="name" name="name" type="text" required />
           </div>
-        </div>
-        <div>
-          <label>Functionalitati dorite</label>
-          <div class="grid">
-            <label><input type="checkbox" name="features" value="Formular lead" /> Formular lead</label>
-            <label><input type="checkbox" name="features" value="Newsletter" /> Newsletter</label>
-            <label><input type="checkbox" name="features" value="CMS" /> CMS</label>
-            <label><input type="checkbox" name="features" value="Automatizari" /> Automatizari</label>
-            <label><input type="checkbox" name="features" value="Integrari API" /> Integrari API</label>
+          <div>
+            <label for="email">Email *</label>
+            <input id="email" name="email" type="email" required />
+          </div>
+          <div class="span-2">
+            <label for="business_type">Tip business *</label>
+            <input id="business_type" name="business_type" type="text" placeholder="Agentie, SaaS, consultanta" required />
           </div>
         </div>
       </div>
 
       <div class="form-section" data-reveal>
-        <h3>Preferinte si buget</h3>
-        <div>
-          <label for="design_preferences">Preferinte design *</label>
-          <input id="design_preferences" name="design_preferences" type="text" placeholder="Minimal, curat, corporate" required />
+        <div class="section-head">
+          <h3>Structura website</h3>
+          <p>Alege tipul de website si paginile esentiale.</p>
         </div>
-        <div>
-          <label for="budget_range">Buget estimat *</label>
-          <select id="budget_range" name="budget_range" required>
-            <option value="">Alege o optiune</option>
-            <option value="Sub 500 EUR">Sub 500 EUR</option>
-            <option value="500 - 1500 EUR">500 - 1500 EUR</option>
-            <option value="1500 - 3000 EUR">1500 - 3000 EUR</option>
-            <option value="Peste 3000 EUR">Peste 3000 EUR</option>
-          </select>
-        </div>
-        <div>
-          <label for="deadline">Deadline *</label>
-          <input id="deadline" name="deadline" type="text" placeholder="Ex: 4 saptamani" required />
+        <div class="form-grid">
+          <div class="span-2">
+            <label for="website_type">Tip website *</label>
+            <select id="website_type" name="website_type" required>
+              <option value="">Alege o optiune</option>
+              <option value="Landing">Landing</option>
+              <option value="Website prezentare">Website prezentare</option>
+              <option value="Website business">Website business</option>
+              <option value="MVP web app">MVP web app</option>
+            </select>
+          </div>
+          <div class="span-2">
+            <label>Pagini necesare *</label>
+            <div class="option-grid">
+              <label class="option-chip"><input type="checkbox" name="pages" value="Home" /> Home</label>
+              <label class="option-chip"><input type="checkbox" name="pages" value="About" /> About</label>
+              <label class="option-chip"><input type="checkbox" name="pages" value="Servicii" /> Servicii</label>
+              <label class="option-chip"><input type="checkbox" name="pages" value="Portofoliu" /> Portofoliu</label>
+              <label class="option-chip"><input type="checkbox" name="pages" value="Blog" /> Blog</label>
+              <label class="option-chip"><input type="checkbox" name="pages" value="Contact" /> Contact</label>
+            </div>
+          </div>
+          <div class="span-2">
+            <label>Functionalitati dorite</label>
+            <div class="option-grid">
+              <label class="option-chip"><input type="checkbox" name="features" value="Formular lead" /> Formular lead</label>
+              <label class="option-chip"><input type="checkbox" name="features" value="Newsletter" /> Newsletter</label>
+              <label class="option-chip"><input type="checkbox" name="features" value="CMS" /> CMS</label>
+              <label class="option-chip"><input type="checkbox" name="features" value="Automatizari" /> Automatizari</label>
+              <label class="option-chip"><input type="checkbox" name="features" value="Integrari API" /> Integrari API</label>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="form-section" data-reveal>
-        <h3>Detalii suplimentare</h3>
-        <div>
-          <label for="message">Detalii suplimentare *</label>
-          <textarea id="message" name="message" required></textarea>
+        <div class="section-head">
+          <h3>Preferinte si buget</h3>
+          <p>Definim stilul vizual si parametrii de livrare.</p>
+        </div>
+        <div class="form-grid">
+          <div class="span-2">
+            <label for="design_preferences">Preferinte design *</label>
+            <input id="design_preferences" name="design_preferences" type="text" placeholder="Minimal, curat, corporate" required />
+          </div>
+          <div>
+            <label for="budget_range">Buget estimat *</label>
+            <select id="budget_range" name="budget_range" required>
+              <option value="">Alege o optiune</option>
+              <option value="Sub 500 EUR">Sub 500 EUR</option>
+              <option value="500 - 1500 EUR">500 - 1500 EUR</option>
+              <option value="1500 - 3000 EUR">1500 - 3000 EUR</option>
+              <option value="Peste 3000 EUR">Peste 3000 EUR</option>
+            </select>
+          </div>
+          <div>
+            <label for="deadline">Deadline *</label>
+            <input id="deadline" name="deadline" type="text" placeholder="Ex: 4 saptamani" required />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section" data-reveal>
+        <div class="section-head">
+          <h3>Detalii suplimentare</h3>
+          <p>Orice informatie utila despre proiect.</p>
+        </div>
+        <div class="form-grid">
+          <div class="span-2">
+            <label for="message">Detalii suplimentare *</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
         </div>
       </div>
 
