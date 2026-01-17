@@ -53,7 +53,7 @@ const initQuoteForm = () => {
       message: form.message.value.trim(),
     };
 
-    if (!payload.name || !payload.email || !payload.message || pages.length === 0) {
+    if (!payload.name || !payload.email) {
       showNotice(notice, 'Completeaza toate campurile obligatorii.', true);
       return;
     }

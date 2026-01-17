@@ -16,6 +16,14 @@ const createLead = async (req, res) => {
   } = req.body;
 
   const createdAt = new Date().toISOString();
+  const safePages = Array.isArray(pages) ? pages : [];
+  const safeFeatures = Array.isArray(features) ? features : [];
+  const safeBusinessType = business_type || '';
+  const safeWebsiteType = website_type || '';
+  const safeDesignPreferences = design_preferences || '';
+  const safeBudgetRange = budget_range || '';
+  const safeDeadline = deadline || '';
+  const safeMessage = message || '';
 
   try {
     const result = await run(
@@ -35,14 +43,14 @@ const createLead = async (req, res) => {
       [
         name,
         email,
-        business_type,
-        website_type,
-        JSON.stringify(pages),
-        JSON.stringify(features),
-        design_preferences,
-        budget_range,
-        deadline,
-        message,
+        safeBusinessType,
+        safeWebsiteType,
+        JSON.stringify(safePages),
+        JSON.stringify(safeFeatures),
+        safeDesignPreferences,
+        safeBudgetRange,
+        safeDeadline,
+        safeMessage,
         createdAt,
       ]
     );
@@ -51,14 +59,14 @@ const createLead = async (req, res) => {
       'Cerere oferta noua',
       `Nume: ${name}`,
       `Email: ${email}`,
-      `Tip business: ${business_type}`,
-      `Tip website: ${website_type}`,
-      `Pagini: ${Array.isArray(pages) ? pages.join(', ') : pages}`,
-      `Functionalitati: ${Array.isArray(features) ? features.join(', ') : features}`,
-      `Preferinte design: ${design_preferences}`,
-      `Buget: ${budget_range}`,
-      `Deadline: ${deadline}`,
-      `Detalii: ${message}`,
+      `Tip business: ${safeBusinessType || '-'}`,
+      `Tip website: ${safeWebsiteType || '-'}`,
+      `Pagini: ${safePages.length ? safePages.join(', ') : '-'}`,
+      `Functionalitati: ${safeFeatures.length ? safeFeatures.join(', ') : '-'}`,
+      `Preferinte design: ${safeDesignPreferences || '-'}`,
+      `Buget: ${safeBudgetRange || '-'}`,
+      `Deadline: ${safeDeadline || '-'}`,
+      `Detalii: ${safeMessage || '-'}`,
       `ID lead: ${result.id}`,
     ].join('\n');
 

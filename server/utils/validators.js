@@ -3,16 +3,16 @@
 const quoteValidation = [
   body('name').trim().escape().isLength({ min: 2, max: 120 }),
   body('email').trim().isEmail().normalizeEmail(),
-  body('business_type').trim().escape().isLength({ min: 2, max: 120 }),
-  body('website_type').trim().escape().isLength({ min: 2, max: 120 }),
-  body('pages').isArray({ min: 1 }),
-  body('pages.*').trim().escape().isLength({ min: 1, max: 120 }),
-  body('features').isArray(),
-  body('features.*').trim().escape().isLength({ min: 1, max: 120 }),
-  body('design_preferences').trim().escape().isLength({ min: 2, max: 200 }),
-  body('budget_range').trim().escape().isLength({ min: 2, max: 120 }),
-  body('deadline').trim().escape().isLength({ min: 2, max: 120 }),
-  body('message').trim().escape().isLength({ min: 10, max: 2000 }),
+  body('business_type').optional({ checkFalsy: true }).trim().escape().isLength({ max: 120 }),
+  body('website_type').optional({ checkFalsy: true }).trim().escape().isLength({ max: 120 }),
+  body('pages').optional().isArray(),
+  body('pages.*').optional({ checkFalsy: true }).trim().escape().isLength({ max: 120 }),
+  body('features').optional().isArray(),
+  body('features.*').optional({ checkFalsy: true }).trim().escape().isLength({ max: 120 }),
+  body('design_preferences').optional({ checkFalsy: true }).trim().escape().isLength({ max: 200 }),
+  body('budget_range').optional({ checkFalsy: true }).trim().escape().isLength({ max: 120 }),
+  body('deadline').optional({ checkFalsy: true }).trim().escape().isLength({ max: 120 }),
+  body('message').optional({ checkFalsy: true }).trim().escape().isLength({ max: 2000 }),
 ];
 
 const contactValidation = [
