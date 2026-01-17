@@ -27,6 +27,8 @@ const initQuoteForm = () => {
   if (!form) return;
 
   const notice = document.querySelector('[data-notice="quote"]');
+  const submitButton = form.querySelector('button[type="submit"]');
+  const initialText = submitButton ? submitButton.textContent : '';
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -57,11 +59,20 @@ const initQuoteForm = () => {
     }
 
     try {
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Se trimite...';
+      }
       await postJson('/api/quote', payload);
       form.reset();
       showNotice(notice, 'Cererea ta a fost trimisa. Revenim in curand cu oferta.', false);
     } catch (error) {
       showNotice(notice, error.message, true);
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = initialText;
+      }
     }
   });
 };
@@ -71,6 +82,8 @@ const initContactForm = () => {
   if (!form) return;
 
   const notice = document.querySelector('[data-notice="contact"]');
+  const submitButton = form.querySelector('button[type="submit"]');
+  const initialText = submitButton ? submitButton.textContent : '';
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -87,11 +100,20 @@ const initContactForm = () => {
     }
 
     try {
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Se trimite...';
+      }
       await postJson('/api/contact', payload);
       form.reset();
       showNotice(notice, 'Mesajul a fost trimis. Multumesc!', false);
     } catch (error) {
       showNotice(notice, error.message, true);
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = initialText;
+      }
     }
   });
 };

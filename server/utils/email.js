@@ -1,6 +1,6 @@
 ﻿const nodemailer = require('nodemailer');
 
-const requiredEnv = ['SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASS', 'SMTP_FROM', 'OWNER_EMAIL'];
+const requiredEnv = ['EMAIL_HOST', 'EMAIL_USER', 'EMAIL_PASS', 'EMAIL_FROM', 'OWNER_EMAIL'];
 
 const hasEmailConfig = () => requiredEnv.every((key) => process.env[key]);
 
@@ -9,15 +9,15 @@ const createTransporter = () => {
     return null;
   }
 
-  const port = Number(process.env.SMTP_PORT);
+  const port = Number(process.env.EMAIL_PORT || 587);
 
   return nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
+    host: process.env.EMAIL_HOST,
     port,
     secure: port === 465,
     auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 };
@@ -30,7 +30,7 @@ const sendOwnerEmail = async ({ subject, text }) => {
   }
 
   const info = await transporter.sendMail({
-    from: process.env.SMTP_FROM,
+    from: process.env.EMAIL_FROM,
     to: process.env.OWNER_EMAIL,
     subject,
     text,

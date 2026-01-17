@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Web Developer - MVP Agentie</title>
   <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/theme.css" />
 </head>
 <body>
   <header>
     <div class="container">
       <nav class="nav">
-        <div><strong>Studio Web MVP</strong></div>
+        <div class="brand">Studio Web MVP</div>
+        <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation">Menu</button>
         <div class="nav-links">
           <a href="/">Home</a>
           <a href="/about">About</a>
@@ -23,11 +25,14 @@
   </header>
 
   <main>
-    <section class="container hero">
+    <section class="container hero" data-reveal>
       <div>
-        <h1>Website-uri clare, rapide, care aduc lead-uri reale.</h1>
-        <p>Construiesc MVP-uri pentru fondatori si antreprenori digitali. Livrez structura solida, continut clar si un backend pregatit pentru scalare.</p>
-        <a class="cta" href="/quote">Porneste configuratorul</a>
+        <h1>Website-uri premium pentru fondatori care vor claritate si conversii.</h1>
+        <p>MVP complet, rapid de livrat, cu structura solida si backend pregatit pentru crestere. Totul curat, clar, scalabil.</p>
+        <div class="actions">
+          <a class="button primary" href="/quote">Porneste configuratorul</a>
+          <a class="button secondary" href="/services">Vezi pachetele</a>
+        </div>
       </div>
       <div class="card">
         <h3>Ce primesti</h3>
@@ -39,8 +44,9 @@
       </div>
     </section>
 
-    <section class="container">
-      <h2>Servicii principale</h2>
+    <section class="container" data-reveal>
+      <h2 class="section-title">Servicii principale</h2>
+      <p class="section-subtitle">Livrez doar ce este necesar pentru a valida rapid si a porni cu incredere.</p>
       <div class="grid">
         <div class="card">
           <h3>Landing + prezentare</h3>
@@ -57,8 +63,8 @@
       </div>
     </section>
 
-    <section class="container">
-      <h2>Cum functioneaza</h2>
+    <section class="container" data-reveal>
+      <h2 class="section-title">Cum functioneaza</h2>
       <div class="grid">
         <div class="card">
           <h3>1. Brief</h3>
@@ -73,7 +79,38 @@
           <p>Deploy rapid si recomandari pentru urmatorul pas.</p>
         </div>
       </div>
-      <p><a class="cta" href="/quote">Cere oferta personalizata</a></p>
+    </section>
+
+    <section class="container" data-reveal>
+      <h2 class="section-title">Pachete clare, livrare rapida</h2>
+      <p class="section-subtitle">Alege varianta potrivita, pornim cu MVP-ul si iteram pe baza datelor reale.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Starter</h3>
+          <p>Site de prezentare simplu, ideal pentru validare rapida.</p>
+          <p><strong>Starting from 500 EUR</strong></p>
+        </div>
+        <div class="card">
+          <h3>Business</h3>
+          <p>Structura completa pentru servicii, agentii si consultanta.</p>
+          <p><strong>Starting from 1200 EUR</strong></p>
+        </div>
+        <div class="card">
+          <h3>Premium</h3>
+          <p>Experiente web avansate cu fluxuri personalizate.</p>
+          <p><strong>Starting from 2500 EUR</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" data-reveal>
+      <div class="card">
+        <h2 class="section-title">Pregatit pentru urmatorul pas?</h2>
+        <p class="section-subtitle">Completeaza configuratorul si iti trimit o propunere initiala.</p>
+        <div class="actions">
+          <a class="button primary" href="/quote">Cere oferta personalizata</a>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -87,6 +124,8 @@
       </div>
     </div>
   </footer>
+
+  <script src="/js/animations.js"></script>
 </body>
 </html>
 

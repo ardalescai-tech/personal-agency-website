@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Servicii - Studio Web MVP</title>
   <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/theme.css" />
 </head>
 <body>
   <header>
     <div class="container">
       <nav class="nav">
-        <div><strong>Studio Web MVP</strong></div>
+        <div class="brand">Studio Web MVP</div>
+        <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation">Menu</button>
         <div class="nav-links">
           <a href="/">Home</a>
           <a href="/about">About</a>
@@ -23,40 +25,45 @@
   </header>
 
   <main class="container">
-    <h1>Pachete servicii</h1>
-    <div class="grid">
-      <div class="card">
-        <h2>Starter</h2>
-        <p>Site de prezentare fara admin, perfect pentru validare rapida.</p>
-        <ul class="list">
-          <li>3-5 pagini</li>
-          <li>Formular lead-uri</li>
-          <li>Deploy inclus</li>
-        </ul>
-        <p><strong>Incepand de la 500 EUR</strong></p>
+    <section data-reveal>
+      <h1 class="section-title">Pachete servicii</h1>
+      <p class="section-subtitle">Structura clara, scope controlat si livrare rapida. Tot ce ai nevoie pentru un start solid.</p>
+      <div class="grid">
+        <div class="card">
+          <h2>Starter</h2>
+          <p>Site de prezentare simplu, perfect pentru validare rapida.</p>
+          <ul class="list">
+            <li>3-5 pagini</li>
+            <li>Formular lead-uri</li>
+            <li>Deploy inclus</li>
+          </ul>
+          <p><strong>Starting from 500 EUR</strong></p>
+        </div>
+        <div class="card">
+          <h2>Business</h2>
+          <p>Website complet pentru agentii, servicii si consultanti.</p>
+          <ul class="list">
+            <li>6-10 pagini</li>
+            <li>Structura pregatita pentru extensii</li>
+            <li>Ghid de continut</li>
+          </ul>
+          <p><strong>Starting from 1200 EUR</strong></p>
+        </div>
+        <div class="card">
+          <h2>Premium</h2>
+          <p>Web app avansata cu fluxuri personalizate si automatizari.</p>
+          <ul class="list">
+            <li>Onboarding client</li>
+            <li>Integrari API</li>
+            <li>Plan tehnic scalabil</li>
+          </ul>
+          <p><strong>Starting from 2500 EUR</strong></p>
+        </div>
       </div>
-      <div class="card">
-        <h2>Business</h2>
-        <p>Website complet pentru agentii, servicii si consultanti.</p>
-        <ul class="list">
-          <li>6-10 pagini</li>
-          <li>Admin basic</li>
-          <li>Structura extinsa</li>
-        </ul>
-        <p><strong>Incepand de la 1200 EUR</strong></p>
+      <div class="actions">
+        <a class="button primary" href="/quote">Configureaza oferta</a>
       </div>
-      <div class="card">
-        <h2>Premium</h2>
-        <p>Web app avansata cu fluxuri personalizate si automatizari.</p>
-        <ul class="list">
-          <li>Onboarding client</li>
-          <li>Integrari API</li>
-          <li>Plan tehnic scalabil</li>
-        </ul>
-        <p><strong>Incepand de la 2500 EUR</strong></p>
-      </div>
-    </div>
-    <p><a class="cta" href="/quote">Configureaza oferta</a></p>
+    </section>
   </main>
 
   <footer class="footer">
@@ -69,6 +76,8 @@
       </div>
     </div>
   </footer>
+
+  <script src="/js/animations.js"></script>
 </body>
 </html>
 

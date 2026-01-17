@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact - Studio Web MVP</title>
   <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/theme.css" />
 </head>
 <body>
   <header>
     <div class="container">
       <nav class="nav">
-        <div><strong>Studio Web MVP</strong></div>
+        <div class="brand">Studio Web MVP</div>
+        <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation">Menu</button>
         <div class="nav-links">
           <a href="/">Home</a>
           <a href="/about">About</a>
@@ -23,26 +25,37 @@
   </header>
 
   <main class="container">
-    <h1>Contact</h1>
-    <p>Ai o intrebare rapida? Scrie-mi si revin cu raspuns.</p>
+    <section data-reveal>
+      <h1 class="section-title">Contact</h1>
+      <p class="section-subtitle">Ai o intrebare rapida? Scrie-mi si revin cu raspuns.</p>
+    </section>
 
     <div data-notice="contact" aria-live="polite"></div>
 
-    <form data-form="contact">
-      <div>
-        <label for="name">Nume complet *</label>
-        <input id="name" name="name" type="text" required />
+    <section class="grid" data-reveal>
+      <div class="card">
+        <h3>Date contact</h3>
+        <p>Email: office@studiowebmvp.ro</p>
+        <p>Program: Luni - Vineri, 09:00 - 18:00</p>
       </div>
-      <div>
-        <label for="email">Email *</label>
-        <input id="email" name="email" type="email" required />
+      <div class="card">
+        <form data-form="contact">
+          <div>
+            <label for="name">Nume complet *</label>
+            <input id="name" name="name" type="text" required />
+          </div>
+          <div>
+            <label for="email">Email *</label>
+            <input id="email" name="email" type="email" required />
+          </div>
+          <div>
+            <label for="message">Mesaj *</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit">Trimite mesaj</button>
+        </form>
       </div>
-      <div>
-        <label for="message">Mesaj *</label>
-        <textarea id="message" name="message" required></textarea>
-      </div>
-      <button type="submit">Trimite mesaj</button>
-    </form>
+    </section>
   </main>
 
   <footer class="footer">
@@ -56,6 +69,7 @@
     </div>
   </footer>
 
+  <script src="/js/animations.js"></script>
   <script src="/js/forms.js"></script>
 </body>
 </html>

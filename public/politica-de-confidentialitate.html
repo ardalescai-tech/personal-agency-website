@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Politica de confidentialitate</title>
   <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/theme.css" />
 </head>
 <body>
   <header>
     <div class="container">
       <nav class="nav">
-        <div><strong>Studio Web MVP</strong></div>
+        <div class="brand">Studio Web MVP</div>
+        <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation">Menu</button>
         <div class="nav-links">
           <a href="/">Home</a>
           <a href="/about">About</a>
@@ -23,7 +25,8 @@
   </header>
 
   <main class="container">
-    <h1>Politica de confidentialitate</h1>
+    <section data-reveal>
+    <h1 class="section-title">Politica de confidentialitate</h1>
     <p>Aceasta politica explica modul in care colectam si procesam datele personale in conformitate cu GDPR (UE/UK).</p>
 
     <h2>Date colectate</h2>
@@ -55,6 +58,7 @@
 
     <h2>Contact</h2>
     <p>Pentru solicitari legate de datele personale, foloseste pagina de contact.</p>
+    </section>
   </main>
 
   <footer class="footer">
@@ -67,6 +71,8 @@
       </div>
     </div>
   </footer>
+
+  <script src="/js/animations.js"></script>
 </body>
 </html>
 

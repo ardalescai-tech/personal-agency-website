@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cere oferta - Studio Web MVP</title>
   <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/theme.css" />
 </head>
 <body>
   <header>
     <div class="container">
       <nav class="nav">
-        <div><strong>Studio Web MVP</strong></div>
+        <div class="brand">Studio Web MVP</div>
+        <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation">Menu</button>
         <div class="nav-links">
           <a href="/">Home</a>
           <a href="/about">About</a>
@@ -23,77 +25,95 @@
   </header>
 
   <main class="container">
-    <h1>Configurator oferta</h1>
-    <p>Completeaza formularul si iti trimitem o propunere initiala.</p>
+    <section data-reveal>
+      <h1 class="section-title">Configurator oferta</h1>
+      <p class="section-subtitle">Completeaza formularul si iti trimitem o propunere initiala.</p>
+    </section>
 
     <div data-notice="quote" aria-live="polite"></div>
 
     <form data-form="quote">
-      <div>
-        <label for="name">Nume complet *</label>
-        <input id="name" name="name" type="text" required />
-      </div>
-      <div>
-        <label for="email">Email *</label>
-        <input id="email" name="email" type="email" required />
-      </div>
-      <div>
-        <label for="business_type">Tip business *</label>
-        <input id="business_type" name="business_type" type="text" placeholder="Agentie, SaaS, consultanta" required />
-      </div>
-      <div>
-        <label for="website_type">Tip website *</label>
-        <select id="website_type" name="website_type" required>
-          <option value="">Alege o optiune</option>
-          <option value="Landing">Landing</option>
-          <option value="Website prezentare">Website prezentare</option>
-          <option value="Website business">Website business</option>
-          <option value="MVP web app">MVP web app</option>
-        </select>
-      </div>
-      <div>
-        <label>Pagini necesare *</label>
-        <div class="grid">
-          <label><input type="checkbox" name="pages" value="Home" /> Home</label>
-          <label><input type="checkbox" name="pages" value="About" /> About</label>
-          <label><input type="checkbox" name="pages" value="Servicii" /> Servicii</label>
-          <label><input type="checkbox" name="pages" value="Portofoliu" /> Portofoliu</label>
-          <label><input type="checkbox" name="pages" value="Blog" /> Blog</label>
-          <label><input type="checkbox" name="pages" value="Contact" /> Contact</label>
+      <div class="form-section" data-reveal>
+        <h3>Detalii companie</h3>
+        <div>
+          <label for="name">Nume complet *</label>
+          <input id="name" name="name" type="text" required />
+        </div>
+        <div>
+          <label for="email">Email *</label>
+          <input id="email" name="email" type="email" required />
+        </div>
+        <div>
+          <label for="business_type">Tip business *</label>
+          <input id="business_type" name="business_type" type="text" placeholder="Agentie, SaaS, consultanta" required />
         </div>
       </div>
-      <div>
-        <label>Functionalitati dorite</label>
-        <div class="grid">
-          <label><input type="checkbox" name="features" value="Formular lead" /> Formular lead</label>
-          <label><input type="checkbox" name="features" value="Newsletter" /> Newsletter</label>
-          <label><input type="checkbox" name="features" value="CMS" /> CMS</label>
-          <label><input type="checkbox" name="features" value="Automatizari" /> Automatizari</label>
-          <label><input type="checkbox" name="features" value="Integrari API" /> Integrari API</label>
+
+      <div class="form-section" data-reveal>
+        <h3>Structura website</h3>
+        <div>
+          <label for="website_type">Tip website *</label>
+          <select id="website_type" name="website_type" required>
+            <option value="">Alege o optiune</option>
+            <option value="Landing">Landing</option>
+            <option value="Website prezentare">Website prezentare</option>
+            <option value="Website business">Website business</option>
+            <option value="MVP web app">MVP web app</option>
+          </select>
+        </div>
+        <div>
+          <label>Pagini necesare *</label>
+          <div class="grid">
+            <label><input type="checkbox" name="pages" value="Home" /> Home</label>
+            <label><input type="checkbox" name="pages" value="About" /> About</label>
+            <label><input type="checkbox" name="pages" value="Servicii" /> Servicii</label>
+            <label><input type="checkbox" name="pages" value="Portofoliu" /> Portofoliu</label>
+            <label><input type="checkbox" name="pages" value="Blog" /> Blog</label>
+            <label><input type="checkbox" name="pages" value="Contact" /> Contact</label>
+          </div>
+        </div>
+        <div>
+          <label>Functionalitati dorite</label>
+          <div class="grid">
+            <label><input type="checkbox" name="features" value="Formular lead" /> Formular lead</label>
+            <label><input type="checkbox" name="features" value="Newsletter" /> Newsletter</label>
+            <label><input type="checkbox" name="features" value="CMS" /> CMS</label>
+            <label><input type="checkbox" name="features" value="Automatizari" /> Automatizari</label>
+            <label><input type="checkbox" name="features" value="Integrari API" /> Integrari API</label>
+          </div>
         </div>
       </div>
-      <div>
-        <label for="design_preferences">Preferinte design *</label>
-        <input id="design_preferences" name="design_preferences" type="text" placeholder="Minimal, curat, corporate" required />
+
+      <div class="form-section" data-reveal>
+        <h3>Preferinte si buget</h3>
+        <div>
+          <label for="design_preferences">Preferinte design *</label>
+          <input id="design_preferences" name="design_preferences" type="text" placeholder="Minimal, curat, corporate" required />
+        </div>
+        <div>
+          <label for="budget_range">Buget estimat *</label>
+          <select id="budget_range" name="budget_range" required>
+            <option value="">Alege o optiune</option>
+            <option value="Sub 500 EUR">Sub 500 EUR</option>
+            <option value="500 - 1500 EUR">500 - 1500 EUR</option>
+            <option value="1500 - 3000 EUR">1500 - 3000 EUR</option>
+            <option value="Peste 3000 EUR">Peste 3000 EUR</option>
+          </select>
+        </div>
+        <div>
+          <label for="deadline">Deadline *</label>
+          <input id="deadline" name="deadline" type="text" placeholder="Ex: 4 saptamani" required />
+        </div>
       </div>
-      <div>
-        <label for="budget_range">Buget estimat *</label>
-        <select id="budget_range" name="budget_range" required>
-          <option value="">Alege o optiune</option>
-          <option value="Sub 500 EUR">Sub 500 EUR</option>
-          <option value="500 - 1500 EUR">500 - 1500 EUR</option>
-          <option value="1500 - 3000 EUR">1500 - 3000 EUR</option>
-          <option value="Peste 3000 EUR">Peste 3000 EUR</option>
-        </select>
+
+      <div class="form-section" data-reveal>
+        <h3>Detalii suplimentare</h3>
+        <div>
+          <label for="message">Detalii suplimentare *</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
       </div>
-      <div>
-        <label for="deadline">Deadline *</label>
-        <input id="deadline" name="deadline" type="text" placeholder="Ex: 4 saptamani" required />
-      </div>
-      <div>
-        <label for="message">Detalii suplimentare *</label>
-        <textarea id="message" name="message" required></textarea>
-      </div>
+
       <button type="submit">Trimite cererea</button>
     </form>
   </main>
@@ -109,6 +129,7 @@
     </div>
   </footer>
 
+  <script src="/js/animations.js"></script>
   <script src="/js/forms.js"></script>
 </body>
 </html>

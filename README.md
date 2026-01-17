@@ -19,8 +19,8 @@ Website: http://localhost:3000
 - `PORT` - portul serverului.
 - `TRUST_PROXY` - `true` pentru deploy pe Render/Railway.
 - `SQLITE_PATH` - calea catre baza SQLite.
-- `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` - SMTP pentru email.
-- `SMTP_FROM` - expeditorul emailurilor.
+- `EMAIL_HOST`, `EMAIL_PORT`, `EMAIL_USER`, `EMAIL_PASS` - SMTP pentru email.
+- `EMAIL_FROM` - expeditorul emailurilor.
 - `OWNER_EMAIL` - unde se trimit notificarile.
 
 ## Rute API
