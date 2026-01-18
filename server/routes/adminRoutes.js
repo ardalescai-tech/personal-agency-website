@@ -12,12 +12,12 @@ router.post('/login', (req, res) => {
   }
 
   if (username !== process.env.ADMIN_USER || password !== process.env.ADMIN_PASS) {
-    return res.status(401).json({ ok: false, error: 'Invalid credentials.' });
+    return res.status(401).json({ ok: false, error: 'Invalid credentials' });
   }
 
   const token = issueToken();
   res.setHeader('Set-Cookie', `admin_token=${encodeURIComponent(token)}; Path=/; SameSite=Lax`);
-  return res.json({ ok: true, token });
+  return res.json({ ok: true });
 });
 
 router.get('/contacts', requireAdminApi, async (req, res) => {

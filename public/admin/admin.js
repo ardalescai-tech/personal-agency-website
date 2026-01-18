@@ -2,7 +2,13 @@
 
 const getToken = () => localStorage.getItem(ADMIN_TOKEN_KEY);
 
+const getCookieToken = () => {
+  const match = document.cookie.match(/(?:^|; )admin_token=([^;]+)/);
+  return match ? decodeURIComponent(match[1]) : null;
+};
+
 const setToken = (token) => {
+  if (!token) return;
   localStorage.setItem(ADMIN_TOKEN_KEY, token);
   document.cookie = `admin_token=${encodeURIComponent(token)}; Path=/; SameSite=Lax`;
 };
@@ -13,7 +19,7 @@ const clearToken = () => {
 };
 
 const apiFetch = async (url, options = {}) => {
-  const token = getToken();
+  const token = getToken() || getCookieToken();
   if (!token) {
     window.location.href = '/admin/login.html';
     return null;
@@ -23,7 +29,7 @@ const apiFetch = async (url, options = {}) => {
     ...options,
     headers: {
       'Content-Type': 'application/json',
-      'x-admin-token': token,
+      ...(token ? { 'x-admin-token': token } : {}),
       ...(options.headers || {}),
     },
   });
@@ -56,7 +62,7 @@ const safeJson = (value) => {
 const requireAuthForPage = () => {
   const protectedPage = document.querySelector('[data-dashboard], [data-contacts], [data-leads]');
   if (!protectedPage) return;
-  if (!getToken()) {
+  if (!getToken() && !getCookieToken()) {
     window.location.href = '/admin/login.html';
   }
 };
@@ -65,7 +71,7 @@ const initLogin = () => {
   const form = document.querySelector('[data-login-form]');
   if (!form) return;
 
-  if (getToken()) {
+  if (getToken() || getCookieToken()) {
     window.location.href = '/admin/dashboard.html';
     return;
   }
@@ -95,7 +101,7 @@ const initLogin = () => {
         throw new Error(data.error || 'Autentificare esuata.');
       }
 
-      setToken(data.token);
+      setToken(getCookieToken());
       window.location.href = '/admin/dashboard.html';
     } catch (error) {
       if (notice) {
@@ -156,7 +162,7 @@ const initDashboard = async () => {
       contacts: contacts.length,
       leads: leads.length,
       last24h: last24h.length,
-      lastContact: lastContact ? `${lastContact.name} - ${lastContact.email}` : 'Niciun mesaj',
+      lastContact: lastContact ? `${lastContact.name} · ${lastContact.email}` : 'Niciun mesaj',
     };
 
     Object.entries(stats).forEach(([key, value]) => {
