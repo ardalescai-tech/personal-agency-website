@@ -18,7 +18,7 @@ const quoteValidation = [
 const contactValidation = [
   body('name').trim().escape().isLength({ min: 2, max: 120 }),
   body('email').trim().isEmail().normalizeEmail(),
-  body('message').trim().escape().isLength({ min: 10, max: 2000 }),
+  body('message').trim().escape().isLength({ min: 1, max: 2000 }),
 ];
 
 const handleValidation = (req, res, next) => {
