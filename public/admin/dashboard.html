@@ -9,7 +9,7 @@
 <body>
   <div class="container" data-dashboard>
     <header class="header">
-      <div class="brand">Admin Dashboard</div>
+      <div class="brand">Studio Web MVP <span class="muted">Admin</span></div>
       <nav class="nav">
         <a class="active" href="/admin/dashboard.html">Dashboard</a>
         <a href="/admin/contacts.html">Contacts</a>
@@ -17,27 +17,30 @@
         <a href="/" target="_blank">Public Site</a>
         <a href="#" data-logout>Logout</a>
       </nav>
+      <div class="user-indicator">Admin</div>
     </header>
 
     <h1 class="section-title">Overview</h1>
     <p class="section-subtitle">Statistici rapide si acces la datele recente.</p>
 
+    <div class="notice" data-dashboard-notice style="display:none; margin-top: 16px;"></div>
+
     <section class="grid cols-4" style="margin-top: 20px;">
       <div class="card">
         <h3>Total Contacts</h3>
-        <div class="badge" data-stat="contacts">0</div>
+        <div class="badge loading" data-stat="contacts">—</div>
       </div>
       <div class="card">
         <h3>Total Leads</h3>
-        <div class="badge" data-stat="leads">0</div>
+        <div class="badge loading" data-stat="leads">—</div>
       </div>
       <div class="card">
         <h3>Ultimele 24h</h3>
-        <div class="badge" data-stat="last24h">0</div>
+        <div class="badge loading" data-stat="last24h">—</div>
       </div>
       <div class="card">
         <h3>Ultimul contact</h3>
-        <p data-stat="lastContact">-</p>
+        <p class="stat-muted" data-stat="lastContact">Niciun mesaj</p>
       </div>
     </section>
 

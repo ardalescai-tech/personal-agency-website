@@ -53,6 +53,14 @@ const safeJson = (value) => {
   }
 };
 
+const requireAuthForPage = () => {
+  const protectedPage = document.querySelector('[data-dashboard], [data-contacts], [data-leads]');
+  if (!protectedPage) return;
+  if (!getToken()) {
+    window.location.href = '/admin/login.html';
+  }
+};
+
 const initLogin = () => {
   const form = document.querySelector('[data-login-form]');
   if (!form) return;
@@ -116,35 +124,57 @@ const initDashboard = async () => {
   const container = document.querySelector('[data-dashboard]');
   if (!container) return;
 
-  const contactsResponse = await apiFetch('/api/admin/contacts');
-  const leadsResponse = await apiFetch('/api/admin/leads');
-  if (!contactsResponse || !leadsResponse) return;
-
-  const contactsData = await contactsResponse.json();
-  const leadsData = await leadsResponse.json();
-
-  const contacts = contactsData.rows || [];
-  const leads = leadsData.rows || [];
-
-  const now = Date.now();
-  const last24h = [...contacts, ...leads].filter((item) => {
-    const created = new Date(item.created_at).getTime();
-    return now - created <= 24 * 60 * 60 * 1000;
+  const notice = document.querySelector('[data-dashboard-notice]');
+  const statElements = Array.from(document.querySelectorAll('[data-stat]'));
+  statElements.forEach((el) => {
+    el.textContent = '—';
+    if (el.classList.contains('badge')) {
+      el.classList.add('loading');
+    }
   });
 
-  const lastContact = contacts[0];
+  try {
+    const contactsResponse = await apiFetch('/api/admin/contacts');
+    const leadsResponse = await apiFetch('/api/admin/leads');
+    if (!contactsResponse || !leadsResponse) return;
 
-  const stats = {
-    contacts: contacts.length,
-    leads: leads.length,
-    last24h: last24h.length,
-    lastContact: lastContact ? `${lastContact.name} · ${lastContact.email}` : 'Nicio intrare',
-  };
+    const contactsData = await contactsResponse.json();
+    const leadsData = await leadsResponse.json();
 
-  Object.entries(stats).forEach(([key, value]) => {
-    const el = document.querySelector(`[data-stat="${key}"]`);
-    if (el) el.textContent = value;
-  });
+    const contacts = contactsData.rows || [];
+    const leads = leadsData.rows || [];
+
+    const now = Date.now();
+    const last24h = [...contacts, ...leads].filter((item) => {
+      const created = new Date(item.created_at).getTime();
+      return now - created <= 24 * 60 * 60 * 1000;
+    });
+
+    const lastContact = contacts[0];
+
+    const stats = {
+      contacts: contacts.length,
+      leads: leads.length,
+      last24h: last24h.length,
+      lastContact: lastContact ? `${lastContact.name} - ${lastContact.email}` : 'Niciun mesaj',
+    };
+
+    Object.entries(stats).forEach(([key, value]) => {
+      const el = document.querySelector(`[data-stat="${key}"]`);
+      if (el) {
+        el.textContent = value;
+        el.classList.remove('loading');
+      }
+    });
+
+    if (notice) notice.style.display = 'none';
+  } catch (error) {
+    if (notice) {
+      notice.textContent = 'Nu am putut incarca datele. Incearca din nou.';
+      notice.style.display = 'block';
+    }
+    statElements.forEach((el) => el.classList.remove('loading'));
+  }
 };
 
 const initContacts = async () => {
@@ -257,6 +287,7 @@ const initLeads = async () => {
   });
 };
 
+requireAuthForPage();
 initLogin();
 initLogout();
 initDashboard();
