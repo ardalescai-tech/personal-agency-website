@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Contacts</title>
+  <link rel="stylesheet" href="/admin/admin.css" />
+</head>
+<body>
+  <div class="container" data-contacts>
+    <header class="header">
+      <div class="brand">Contacts</div>
+      <nav class="nav">
+        <a href="/admin/dashboard.html">Dashboard</a>
+        <a class="active" href="/admin/contacts.html">Contacts</a>
+        <a href="/admin/leads.html">Leads</a>
+        <a href="/" target="_blank">Public Site</a>
+        <a href="#" data-logout>Logout</a>
+      </nav>
+    </header>
+
+    <h1 class="section-title">Mesaje Contact</h1>
+    <p class="section-subtitle">Lista completa a mesajelor primite prin formular.</p>
+
+    <div class="notice" style="margin: 20px 0;">Click pe mesaj pentru a vedea continutul complet.</div>
+
+    <div class="table-wrap" style="margin-top: 12px;">
+      <table>
+        <thead>
+          <tr>
+            <th>Nume</th>
+            <th>Email</th>
+            <th>Mesaj</th>
+            <th>Data</th>
+          </tr>
+        </thead>
+        <tbody data-contacts-body></tbody>
+      </table>
+      <div class="empty" data-empty style="display:none;">Nu exista mesaje.</div>
+    </div>
+  </div>
+
+  <script src="/admin/admin.js"></script>
+</body>
+</html>

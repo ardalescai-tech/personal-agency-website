@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/admin/admin.css" />
+</head>
+<body>
+  <div class="container" data-dashboard>
+    <header class="header">
+      <div class="brand">Admin Dashboard</div>
+      <nav class="nav">
+        <a class="active" href="/admin/dashboard.html">Dashboard</a>
+        <a href="/admin/contacts.html">Contacts</a>
+        <a href="/admin/leads.html">Leads</a>
+        <a href="/" target="_blank">Public Site</a>
+        <a href="#" data-logout>Logout</a>
+      </nav>
+    </header>
+
+    <h1 class="section-title">Overview</h1>
+    <p class="section-subtitle">Statistici rapide si acces la datele recente.</p>
+
+    <section class="grid cols-4" style="margin-top: 20px;">
+      <div class="card">
+        <h3>Total Contacts</h3>
+        <div class="badge" data-stat="contacts">0</div>
+      </div>
+      <div class="card">
+        <h3>Total Leads</h3>
+        <div class="badge" data-stat="leads">0</div>
+      </div>
+      <div class="card">
+        <h3>Ultimele 24h</h3>
+        <div class="badge" data-stat="last24h">0</div>
+      </div>
+      <div class="card">
+        <h3>Ultimul contact</h3>
+        <p data-stat="lastContact">-</p>
+      </div>
+    </section>
+
+    <section class="grid cols-2" style="margin-top: 28px;">
+      <div class="card">
+        <h3>Acces rapid</h3>
+        <p>Vezi rapid toate mesajele si cererile primite.</p>
+        <div style="display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap;">
+          <a class="button" href="/admin/contacts.html">Contacts</a>
+          <a class="button secondary" href="/admin/leads.html">Leads</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Update</h3>
+        <p>Dashboard-ul este read-only si afiseaza datele din SQLite in timp real.</p>
+      </div>
+    </section>
+  </div>
+
+  <script src="/admin/admin.js"></script>
+</body>
+</html>

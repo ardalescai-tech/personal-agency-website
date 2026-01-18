@@ -3,6 +3,9 @@ const { sendOwnerEmail } = require('../utils/email');
 
 const createContact = async (req, res) => {
   const { name, email, message } = req.body;
+  const safeName = name || '';
+  const safeEmail = email || '';
+  const safeMessage = message || '';
   const createdAt = new Date().toISOString();
 
   try {
@@ -13,14 +16,14 @@ const createContact = async (req, res) => {
         message,
         created_at
       ) VALUES (?, ?, ?, ?)` ,
-      [name, email, message, createdAt]
+      [safeName, safeEmail, safeMessage, createdAt]
     );
 
     const emailText = [
       'Mesaj nou din contact',
-      `Nume: ${name}`,
-      `Email: ${email}`,
-      `Mesaj: ${message}`,
+      `Nume: ${safeName || '-'}`,
+      `Email: ${safeEmail || '-'}`,
+      `Mesaj: ${safeMessage || '-'}`,
       `ID contact: ${result.id}`,
     ].join('\n');
 

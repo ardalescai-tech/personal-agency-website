@@ -26,11 +26,18 @@ Website: http://localhost:3000
 ## Rute API
 - `POST /api/quote` - salveaza cereri de oferta.
 - `POST /api/contact` - salveaza mesaje de contact.
+- `POST /api/admin/login` - autentificare admin (token).
+- `GET /api/admin/contacts` - lista contacts (protejat).
+- `GET /api/admin/leads` - lista leads (protejat).
 
 ## Deploy (Railway / Render / VPS)
 1. Seteaza variabilele de mediu in platforma.
 2. Asigura-te ca `SQLITE_PATH` indica un volum persistent.
 3. Comanda de start: `npm run start`.
+
+## Admin Dashboard
+- Acces: `/admin/login.html`
+- Necesita `ADMIN_USER` si `ADMIN_PASS` in `.env`.
 
 ## Structura proiect
 - `public/` - frontend static

@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Leads</title>
+  <link rel="stylesheet" href="/admin/admin.css" />
+</head>
+<body>
+  <div class="container" data-leads>
+    <header class="header">
+      <div class="brand">Leads</div>
+      <nav class="nav">
+        <a href="/admin/dashboard.html">Dashboard</a>
+        <a href="/admin/contacts.html">Contacts</a>
+        <a class="active" href="/admin/leads.html">Leads</a>
+        <a href="/" target="_blank">Public Site</a>
+        <a href="#" data-logout>Logout</a>
+      </nav>
+    </header>
+
+    <h1 class="section-title">Cereri oferta</h1>
+    <p class="section-subtitle">Click pe un rand pentru detalii complete despre lead.</p>
+
+    <div class="table-wrap" style="margin-top: 20px;">
+      <table>
+        <thead>
+          <tr>
+            <th>Nume</th>
+            <th>Email</th>
+            <th>Tip business</th>
+            <th>Tip website</th>
+            <th>Buget</th>
+            <th>Deadline</th>
+            <th>Data</th>
+          </tr>
+        </thead>
+        <tbody data-leads-body></tbody>
+      </table>
+      <div class="empty" data-empty style="display:none;">Nu exista cereri.</div>
+    </div>
+  </div>
+
+  <div class="modal" data-modal>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Detalii lead</h3>
+        <button class="button secondary" data-modal-close>Inchide</button>
+      </div>
+      <div class="modal-body" data-modal-body></div>
+    </div>
+  </div>
+
+  <script src="/admin/admin.js"></script>
+</body>
+</html>

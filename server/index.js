@@ -7,7 +7,9 @@ const rateLimit = require('express-rate-limit');
 
 const quoteRoutes = require('./routes/quoteRoutes');
 const contactRoutes = require('./routes/contactRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 const { hasEmailConfig } = require('./utils/email');
+const { requireAdminPage } = require('./utils/adminAuth');
 
 const app = express();
 
@@ -28,10 +30,16 @@ const apiLimiter = rateLimit({
 
 app.use('/api', apiLimiter);
 
+app.use('/admin', requireAdminPage);
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use('/api/quote', quoteRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/admin', adminRoutes);
+
+app.get('/admin', (req, res) => {
+  res.redirect('/admin/login.html');
+});
 
 const sendPage = (res, fileName) => {
   res.sendFile(path.join(__dirname, '..', 'public', fileName));
