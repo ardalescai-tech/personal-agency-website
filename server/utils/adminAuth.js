@@ -39,7 +39,16 @@ const requireAdminPage = (req, res, next) => {
   if (verifyToken(token)) {
     return next();
   }
-  if (req.path.endsWith('/login.html')) {
+  if (
+    req.path.endsWith('/login.html') ||
+    req.path.endsWith('.css') ||
+    req.path.endsWith('.js') ||
+    req.path.endsWith('.map') ||
+    req.path.endsWith('.svg') ||
+    req.path.endsWith('.png') ||
+    req.path.endsWith('.jpg') ||
+    req.path.endsWith('.jpeg')
+  ) {
     return next();
   }
   return res.redirect('/admin/login.html');

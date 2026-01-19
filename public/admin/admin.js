@@ -1,5 +1,12 @@
 ﻿const ADMIN_TOKEN_KEY = 'admin_token';
 
+const enforceLocalHttp = () => {
+  if (window.location.protocol === 'https:' && ['localhost', '127.0.0.1'].includes(window.location.hostname)) {
+    const target = `http://${window.location.host}${window.location.pathname}${window.location.search}${window.location.hash}`;
+    window.location.replace(target);
+  }
+};
+
 const getToken = () => localStorage.getItem(ADMIN_TOKEN_KEY);
 
 const getCookieToken = () => {
@@ -293,9 +300,11 @@ const initLeads = async () => {
   });
 };
 
+enforceLocalHttp();
 requireAuthForPage();
 initLogin();
 initLogout();
 initDashboard();
 initContacts();
 initLeads();
+
