@@ -34,23 +34,24 @@ db.serialize(() => {
     )
   `);
 
-  db.all('PRAGMA table_info(leads);', (err, rows) => {
-    if (err) return;
-    const hasStatus = rows.some((row) => row.name === 'status');
-    if (!hasStatus) {
-      db.run(`ALTER TABLE leads ADD COLUMN status TEXT DEFAULT 'new'`);
-    }
-    db.run(`UPDATE leads SET status = 'new' WHERE status IS NULL`);
-  });
+  const ensureStatusColumn = (tableName) => {
+    db.all(`PRAGMA table_info(${tableName});`, (err, rows) => {
+      if (err) return;
+      const hasStatus = rows.some((row) => row.name === 'status');
+      if (hasStatus) {
+        db.run(`UPDATE ${tableName} SET status = 'new' WHERE status IS NULL`);
+        return;
+      }
 
-  db.all('PRAGMA table_info(contacts);', (err, rows) => {
-    if (err) return;
-    const hasStatus = rows.some((row) => row.name === 'status');
-    if (!hasStatus) {
-      db.run(`ALTER TABLE contacts ADD COLUMN status TEXT DEFAULT 'new'`);
-    }
-    db.run(`UPDATE contacts SET status = 'new' WHERE status IS NULL`);
-  });
+      db.run(`ALTER TABLE ${tableName} ADD COLUMN status TEXT DEFAULT 'new'`, (alterErr) => {
+        if (alterErr) return;
+        db.run(`UPDATE ${tableName} SET status = 'new' WHERE status IS NULL`);
+      });
+    });
+  };
+
+  ensureStatusColumn('leads');
+  ensureStatusColumn('contacts');
 });
 
 const run = (sql, params = []) =>
