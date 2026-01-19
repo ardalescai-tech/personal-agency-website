@@ -66,6 +66,25 @@ const safeJson = (value) => {
   }
 };
 
+const getStatusClass = (status) => {
+  const clean = status || 'new';
+  return `status-badge status-${clean}`;
+};
+
+const updateStatus = async (type, id, status, badgeEl) => {
+  const response = await apiFetch(`/api/admin/${type}/${id}/status`, {
+    method: 'PATCH',
+    body: JSON.stringify({ status }),
+  });
+  if (!response) return false;
+  if (!response.ok) return false;
+  if (badgeEl) {
+    badgeEl.textContent = status.replace('_', ' ');
+    badgeEl.className = getStatusClass(status);
+  }
+  return true;
+};
+
 const requireAuthForPage = () => {
   const protectedPage = document.querySelector('[data-dashboard], [data-contacts], [data-leads]');
   if (!protectedPage) return;
@@ -216,8 +235,16 @@ const initContacts = async () => {
       <td>
         <button class="button secondary" data-message="${encodeURIComponent(row.message)}">${shortMessage}</button>
       </td>
+      <td><span class="${getStatusClass(row.status)}">${row.status || 'new'}</span></td>
+      <td>
+        <div class="action-group">
+          <button class="button small secondary" data-status="contacted">Contacted</button>
+          <button class="button small secondary" data-status="closed">Close</button>
+        </div>
+      </td>
       <td>${formatDate(row.created_at)}</td>
     `;
+    tr.dataset.contactId = row.id;
     body.appendChild(tr);
   });
 
@@ -226,6 +253,15 @@ const initContacts = async () => {
     if (!button) return;
     const full = decodeURIComponent(button.getAttribute('data-message'));
     button.textContent = full;
+  });
+
+  body.addEventListener('click', async (event) => {
+    const actionButton = event.target.closest('button[data-status]');
+    if (!actionButton) return;
+    const row = actionButton.closest('tr');
+    if (!row) return;
+    const badgeEl = row.querySelector('.status-badge');
+    await updateStatus('contacts', row.dataset.contactId, actionButton.dataset.status, badgeEl);
   });
 };
 
@@ -260,8 +296,16 @@ const initLeads = async () => {
       <td>${row.website_type || '-'}</td>
       <td>${row.budget_range || '-'}</td>
       <td>${row.deadline || '-'}</td>
+      <td><span class="${getStatusClass(row.status)}">${row.status || 'new'}</span></td>
+      <td>
+        <div class="action-group">
+          <button class="button small secondary" data-status="contacted">Contacted</button>
+          <button class="button small secondary" data-status="closed">Close</button>
+        </div>
+      </td>
       <td>${formatDate(row.created_at)}</td>
     `;
+    tr.dataset.leadId = row.id;
     body.appendChild(tr);
   });
 
@@ -287,6 +331,15 @@ const initLeads = async () => {
     `;
 
     modal.classList.add('open');
+  });
+
+  body.addEventListener('click', async (event) => {
+    const actionButton = event.target.closest('button[data-status]');
+    if (!actionButton) return;
+    const row = actionButton.closest('tr');
+    if (!row) return;
+    const badgeEl = row.querySelector('.status-badge');
+    await updateStatus('leads', row.dataset.leadId, actionButton.dataset.status, badgeEl);
   });
 
   modalClose.addEventListener('click', () => {

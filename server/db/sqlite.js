@@ -18,6 +18,7 @@ db.serialize(() => {
       budget_range TEXT NOT NULL,
       deadline TEXT NOT NULL,
       message TEXT NOT NULL,
+      status TEXT NOT NULL DEFAULT 'new',
       created_at TEXT NOT NULL
     )
   `);
@@ -28,9 +29,28 @@ db.serialize(() => {
       name TEXT NOT NULL,
       email TEXT NOT NULL,
       message TEXT NOT NULL,
+      status TEXT NOT NULL DEFAULT 'new',
       created_at TEXT NOT NULL
     )
   `);
+
+  db.all('PRAGMA table_info(leads);', (err, rows) => {
+    if (err) return;
+    const hasStatus = rows.some((row) => row.name === 'status');
+    if (!hasStatus) {
+      db.run(`ALTER TABLE leads ADD COLUMN status TEXT DEFAULT 'new'`);
+    }
+    db.run(`UPDATE leads SET status = 'new' WHERE status IS NULL`);
+  });
+
+  db.all('PRAGMA table_info(contacts);', (err, rows) => {
+    if (err) return;
+    const hasStatus = rows.some((row) => row.name === 'status');
+    if (!hasStatus) {
+      db.run(`ALTER TABLE contacts ADD COLUMN status TEXT DEFAULT 'new'`);
+    }
+    db.run(`UPDATE contacts SET status = 'new' WHERE status IS NULL`);
+  });
 });
 
 const run = (sql, params = []) =>
